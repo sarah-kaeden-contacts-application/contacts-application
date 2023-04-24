@@ -108,6 +108,7 @@ public void deleteContact(){
             if(line.equalsIgnoreCase(searchContact)){
 
                 removelines.remove(searchContact);
+                contacts();
             }
         }
     }catch (IOException e){
