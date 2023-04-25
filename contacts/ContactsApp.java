@@ -39,11 +39,6 @@ public class    ContactsApp {
            continuee = scan.nextLine();
         }while(continuee.equalsIgnoreCase("y"));
 
-
-
-
-        //now the contacts.txt is made
-
     }
 
 }

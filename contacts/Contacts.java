@@ -53,11 +53,9 @@ public class Contacts {
         }
     }
 
-// FW dis
 
     public void addContacts(){
 
-//        String addedCon = scan.nextLine();
         String name = scan.nextLine();
         String phoneNumber = scan.nextLine();
         switch (phoneNumber.length()) {
@@ -71,7 +69,6 @@ public class Contacts {
         boolean hasIt = false;
         List<String> addedContact = Arrays.asList(name + " | " + phoneNumber);
         if(!hasIt) {
-//            String phoneNumber = scan.nextLine();
             try {
 
                 Files.write(dataFile, addedContact, StandardOpenOption.APPEND);
@@ -82,7 +79,6 @@ public class Contacts {
         }
 }
 
-// FW dis
 public void searchContact(){
     System.out.println("Enter Name:");
 
