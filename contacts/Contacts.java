@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.text.DecimalFormat;
 import java.util.*;
 
 public class Contacts {
@@ -16,8 +17,6 @@ public class Contacts {
     Path dataFile = Paths.get(directory, fileName);
 
     public  void makeFile(){
-
-
         if(Files.notExists(dataFile)){
             try{
                 Files.createFile(dataFile);
@@ -32,14 +31,17 @@ public class Contacts {
                 e.printStackTrace();
             }
         }
-
     }
-    List<String> contactName = Arrays.asList("Oggie Booggie | 800-243-1025", "Your Mom | 420-666-6969", "Sponge Bob | 915-243-6754");
 
+
+
+    List<String> contactName = Arrays.asList("Oggie Booggie" + "|" + "800-243-1025", "Your Mom" + "|"+ "420-666-6969", "Sponge Bob" + "|" + "915-243-6754");
     public void contacts(){
 
-//        System.out.println(contactName);
         System.out.println("name | phone number");
+//        System.out.println(name + " | " + phoneNumber);
+        String name = scan.nextLine();
+        String phoneNumber = scan.nextLine();
         System.out.println("-----------------------");
 
         try {
@@ -53,6 +55,9 @@ public class Contacts {
             e.printStackTrace();
         }
     }
+
+// FW dis
+
     public void addContacts(){
 
         String addedCon = scan.nextLine();
@@ -62,13 +67,13 @@ public class Contacts {
             for(String line: lines){
                 if(line.equals(addedCon)){
                     hasIt = true;
+                    System.out.println("There's already a contact named Jane Doe. Do you want to overwrite it? (y/n)\n");
                 }
             }
         }catch (IOException e){
             e.printStackTrace();
         }
         if(!hasIt) {
-
             try {
                 List<String> currentList = Files.readAllLines(dataFile);
                 currentList.add(addedCon);
@@ -77,13 +82,12 @@ public class Contacts {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
         }
-//        System.out.println(contactName);
-
 }
+
+// FW dis
 public void searchContact(){
-    System.out.println("enter name");
+    System.out.println("Enter Name:");
 
     String searchContact = scan.nextLine();
 
@@ -99,19 +103,21 @@ public void searchContact(){
     }
 }
 public void deleteContact(){
-    System.out.println("enter name");
+    System.out.println("Enter Name:");
 
     String searchContact = scan.nextLine();
+    List<String> newList = new ArrayList<>();
     try{
         List<String> removelines = Files.readAllLines(dataFile);
         for(String line: removelines){
             if(line.equalsIgnoreCase(searchContact)){
-
-                removelines.remove(searchContact);
-                contacts();
+                continue;
+            } else {
+                newList.add(line);
             }
         }
-    }catch (IOException e){
+        Files.write(dataFile, newList);
+    } catch (IOException e) {
         e.printStackTrace();
     }
 }
