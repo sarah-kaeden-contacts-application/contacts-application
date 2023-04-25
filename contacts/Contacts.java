@@ -35,13 +35,10 @@ public class Contacts {
 
 
 
-    List<String> contactName = Arrays.asList("Oggie Booggie" + "|" + "800-243-1025", "Your Mom" + "|"+ "420-666-6969", "Sponge Bob" + "|" + "915-243-6754");
+    List<String> contactName = Arrays.asList("Oggie Booggie" + "|" + "800-243-1025", "Your Mom" + "|" + "420-666-6969", "Sponge Bob" + "|" + "915-243-6754");
     public void contacts(){
 
         System.out.println("name | phone number");
-//        System.out.println(name + " | " + phoneNumber);
-        String name = scan.nextLine();
-        String phoneNumber = scan.nextLine();
         System.out.println("-----------------------");
 
         try {
@@ -56,28 +53,25 @@ public class Contacts {
         }
     }
 
-// FW dis
 
     public void addContacts(){
 
-        String addedCon = scan.nextLine();
-        boolean hasIt = false;
-        try{
-            List<String> lines = Files.readAllLines(dataFile);
-            for(String line: lines){
-                if(line.equals(addedCon)){
-                    hasIt = true;
-                    System.out.println("There's already a contact named Jane Doe. Do you want to overwrite it? (y/n)\n");
-                }
+        String name = scan.nextLine();
+        String phoneNumber = scan.nextLine();
+        switch (phoneNumber.length()) {
+            case 7 -> {
+                phoneNumber = phoneNumber.replaceFirst("(\\d{3})(\\d+)", "$1-$2-$3");
             }
-        }catch (IOException e){
-            e.printStackTrace();
+            case 10 -> {
+                phoneNumber = phoneNumber.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "$1-$2-$3");
+            }
         }
+        boolean hasIt = false;
+        List<String> addedContact = Arrays.asList(name + " | " + phoneNumber);
         if(!hasIt) {
             try {
-                List<String> currentList = Files.readAllLines(dataFile);
-                currentList.add(addedCon);
-                Files.write(dataFile, currentList);
+
+                Files.write(dataFile, addedContact, StandardOpenOption.APPEND);
                 contacts();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -85,7 +79,6 @@ public class Contacts {
         }
 }
 
-// FW dis
 public void searchContact(){
     System.out.println("Enter Name:");
 
@@ -110,7 +103,7 @@ public void deleteContact(){
     try{
         List<String> removelines = Files.readAllLines(dataFile);
         for(String line: removelines){
-            if(line.equalsIgnoreCase(searchContact)){
+            if(line.contains(searchContact)){
                 continue;
             } else {
                 newList.add(line);
@@ -121,4 +114,19 @@ public void deleteContact(){
         e.printStackTrace();
     }
 }
+    public void bonus() {
+        System.out.println("Whats yo digits");
+        Scanner scanner = new Scanner(System.in);
+        String userInput = scanner.nextLine();
+        switch (userInput.length()){
+            case 7:
+                String number = userInput.replaceFirst("(\\d{3})(\\d+)", "$1-$2-$3");
+                System.out.println(number);
+                break;
+            case 10:
+                String number1 = userInput.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "$1-$2-$3");
+                System.out.println(number1);
+                break;
+        }
+    }
 }
