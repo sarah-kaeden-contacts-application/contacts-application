@@ -2,7 +2,7 @@ package contacts;
 
 import java.util.Scanner;
 
-public class ContactsApp {
+public class    ContactsApp {
     public static void main(String[] args) {
         Contacts makeIt = new Contacts();
         makeIt.makeFile();
@@ -35,15 +35,15 @@ public class ContactsApp {
                 case "5":
                     System.exit(0);
                     break;
+                case "6":
+                    Bonus bonus = new Bonus();
+                    bonus.bonus();
+                    break;
 
             }
             System.out.println("would you like to continue? [y/n]");
            continuee = scan.nextLine();
         }while(continuee.equalsIgnoreCase("y"));
-
-
-
-
 
 
 
