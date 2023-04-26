@@ -7,19 +7,16 @@ public class    ContactsApp {
         Contacts makeIt = new Contacts();
         makeIt.makeFile();
         Menu menu = new Menu();
-
         Scanner scan = new Scanner(System.in);
-
         String continuee = "n";
-        do{
+        do {
             menu.menu();
             String menuChoice = scan.nextLine();
-            System.out.println("got it");
+            System.out.println("Done.");
             switch (menuChoice) {
                 case "1" -> {
                     Contacts contacts = new Contacts();
                     contacts.contacts();
-
                 }
                 case "2" -> {
                     Contacts addContact = new Contacts();
@@ -38,7 +35,6 @@ public class    ContactsApp {
             System.out.println("would you like to continue? [y/n]");
            continuee = scan.nextLine();
         }while(continuee.equalsIgnoreCase("y"));
-
     }
 
 }

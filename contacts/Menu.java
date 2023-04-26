@@ -1,8 +1,4 @@
 package contacts;
-
-import java.io.IOException;
-import java.util.Scanner;
-
 public class Menu {
     public void menu(){
         System.out.println("1. View contacts.\n" +
@@ -11,6 +7,5 @@ public class Menu {
                 "4. Delete an existing contact.\n" +
                 "5. Exit.\n" +
                 "Enter an option (1, 2, 3, 4 or 5):");
-
     }
 }

@@ -5,7 +5,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.text.DecimalFormat;
 import java.util.*;
 
 public class Contacts {
@@ -35,7 +34,6 @@ public class Contacts {
 
 
 
-    List<String> contactName = Arrays.asList("Oggie Booggie" + "|" + "800-243-1025", "Your Mom" + "|" + "420-666-6969", "Sponge Bob" + "|" + "915-243-6754");
     public void contacts(){
 
         System.out.println("name | phone number");
@@ -77,56 +75,42 @@ public class Contacts {
                 e.printStackTrace();
             }
         }
-}
-
-public void searchContact(){
-    System.out.println("Enter Name:");
-
-    String searchContact = scan.nextLine();
-
-    try{
-        List<String> lines = Files.readAllLines(dataFile);
-        for(String line: lines){
-            if(line.contains(searchContact)){
-                System.out.println(line);
-            }
-        }
-    }catch (IOException e){
-        e.printStackTrace();
     }
-}
-public void deleteContact(){
-    System.out.println("Enter Name:");
 
-    String searchContact = scan.nextLine();
-    List<String> newList = new ArrayList<>();
-    try{
-        List<String> removelines = Files.readAllLines(dataFile);
-        for(String line: removelines){
-            if(line.contains(searchContact)){
-                continue;
-            } else {
-                newList.add(line);
+    public void searchContact(){
+        System.out.println("Enter Name:");
+
+        String searchContact = scan.nextLine();
+
+        try{
+            List<String> lines = Files.readAllLines(dataFile);
+            for(String line: lines){
+                if(line.contains(searchContact)){
+                    System.out.println(line);
+                }
             }
+        }catch (IOException e){
+            e.printStackTrace();
         }
-        Files.write(dataFile, newList);
-    } catch (IOException e) {
-        e.printStackTrace();
     }
-}
-    public void bonus() {
-        System.out.println("Whats yo digits");
-        Scanner scanner = new Scanner(System.in);
-        String userInput = scanner.nextLine();
-        switch (userInput.length()){
-            case 7:
-                String number = userInput.replaceFirst("(\\d{3})(\\d+)", "$1-$2-$3");
-                System.out.println(number);
-                break;
-            case 10:
-                String number1 = userInput.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "$1-$2-$3");
-                System.out.println(number1);
-                break;
+
+    public void deleteContact(){
+        System.out.println("Enter Name:");
+
+        String searchContact = scan.nextLine();
+        List<String> newList = new ArrayList<>();
+        try{
+            List<String> removelines = Files.readAllLines(dataFile);
+            for(String line: removelines){
+                if(line.contains(searchContact)){
+                    continue;
+                } else {
+                    newList.add(line);
+                }
+            }
+            Files.write(dataFile, newList);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
